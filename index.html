@@ -4,298 +4,356 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>株式会社インフィニティ｜INFINITY, K.K.</title>
-<meta name="description" content="株式会社インフィニティ（INFINITY, K.K.）は、東京・南青山でスマートフォンアプリの企画・開発・運営を行っています。毎日ひらきたくなるアプリを、小さな積み重ねから。">
+<meta name="description" content="株式会社インフィニティ（INFINITY, K.K.）— 習慣の設計を研究するアプリケーション開発会社。東京都港区南青山。語学・身体・遊戯の領域でiOS / Androidアプリを企画・開発・運営。">
 <link rel="canonical" href="https://01-infinity.com/">
 <meta property="og:title" content="株式会社インフィニティ｜INFINITY, K.K.">
-<meta property="og:description" content="毎日ひらきたくなるアプリを、小さな積み重ねから。">
+<meta property="og:description" content="習慣は、設計できる。— 人が明日もまた開く理由を、仕組みとして設計する。">
 <meta property="og:url" content="https://01-infinity.com/">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#faf7f1">
+<meta name="theme-color" content="#08090b">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --paper:#faf7f1;
-  --paper-deep:#f2ede3;
-  --ink:#16130e;
-  --ink-soft:#4a443a;
-  --ink-faint:#8d8578;
-  --rule:#ded7c9;
-  --shu:#b3372c;          /* 朱 */
-  --shu-soft:#d9695c;
+  --void:#08090b;
+  --panel:#0e1013;
+  --line:#1e2228;
+  --bone:#e8e6e1;
+  --dim:#7e8691;
+  --faint:#49505a;
+  --signal:#ff3b1f;        /* 警告灯 */
+  --signal-dim:rgba(255,59,31,.16);
 
-  --display:"Shippori Mincho B1", "Hiragino Mincho ProN", serif;
-  --body:"Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, monospace;
+  --jp:"Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
 
-  --gut: clamp(20px, 5vw, 72px);
-  --max: 1080px;
+  --gut:clamp(18px,4.5vw,64px);
+  --max:1180px;
 }
-
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{
-  margin:0;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:var(--body);
-  font-weight:400;
-  line-height:1.95;
-  letter-spacing:.02em;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
+  margin:0; background:var(--void); color:var(--bone);
+  font-family:var(--jp); font-weight:500; line-height:1.9;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
 }
 
-/* 紙の質感 ------------------------------------------------ */
-body::before{
-  content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
-  opacity:.055; mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+/* 格子と走査線 --------------------------------------------- */
+.grid-bg{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,.028) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.018) 1px, transparent 1px);
+  background-size:clamp(60px,8vw,110px) clamp(60px,8vw,110px);
+  mask-image:radial-gradient(130% 100% at 50% 0%, #000 35%, transparent 100%);
 }
-body::after{
-  content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
-  background:radial-gradient(120% 80% at 78% -10%, rgba(179,55,44,.055), transparent 60%);
+.scan{
+  position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.4;
+  background:repeating-linear-gradient(to bottom, rgba(255,255,255,.016) 0 1px, transparent 1px 3px);
+}
+.glow{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(60% 40% at 82% -5%, rgba(255,59,31,.10), transparent 62%),
+    radial-gradient(50% 35% at 8% 12%, rgba(90,160,255,.055), transparent 60%);
 }
 .wrap{position:relative; z-index:1; max-width:var(--max); margin:0 auto; padding:0 var(--gut)}
 
-/* 登場 ---------------------------------------------------- */
-@keyframes rise{from{opacity:0; transform:translateY(16px)} to{opacity:1; transform:none}}
-@keyframes draw{from{transform:scaleX(0)} to{transform:scaleX(1)}}
-.r{opacity:0; animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
-.d1{animation-delay:.05s}.d2{animation-delay:.16s}.d3{animation-delay:.27s}
-.d4{animation-delay:.38s}.d5{animation-delay:.5s}.d6{animation-delay:.62s}
-@media (prefers-reduced-motion:reduce){.r{opacity:1; animation:none} .hr i{transform:none !important}}
-
-/* 罫 ------------------------------------------------------ */
-.hr{height:1px; background:transparent; overflow:hidden}
-.hr i{display:block; height:1px; background:var(--rule); transform-origin:left;
-      animation:draw 1.1s cubic-bezier(.2,.7,.2,1) forwards; animation-delay:.3s; transform:scaleX(0)}
-
-/* 見出し小ラベル ------------------------------------------ */
-.label{
-  font-size:10px; letter-spacing:.34em; text-transform:uppercase;
-  color:var(--ink-faint); font-weight:500;
+/* 共通 ----------------------------------------------------- */
+.mono{font-family:var(--mono)}
+.tag{
+  font-family:var(--mono); font-size:10px; font-weight:500;
+  letter-spacing:.3em; text-transform:uppercase; color:var(--faint);
 }
+.rule{height:1px; background:var(--line)}
 
-/* ヘッダー ------------------------------------------------ */
-header{padding:clamp(40px,7vw,76px) 0 clamp(64px,12vw,140px)}
-.brandline{display:flex; align-items:center; gap:14px; margin-bottom:clamp(44px,9vw,96px)}
-.seal{
-  width:30px; height:30px; flex:none; border-radius:5px;
-  background:var(--shu); color:#fff; display:grid; place-items:center;
-  font-family:var(--display); font-weight:800; font-size:15px; line-height:1;
-  box-shadow:0 1px 0 rgba(0,0,0,.12);
+@keyframes up{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
+@keyframes wipe{from{clip-path:inset(0 100% 0 0)} to{clip-path:inset(0 0 0 0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.a{opacity:0; animation:up .8s cubic-bezier(.2,.75,.2,1) forwards}
+.a1{animation-delay:.06s}.a2{animation-delay:.16s}.a3{animation-delay:.26s}
+.a4{animation-delay:.36s}.a5{animation-delay:.46s}.a6{animation-delay:.58s}
+@media (prefers-reduced-motion:reduce){.a{opacity:1;animation:none}}
+
+/* 上部バー ------------------------------------------------- */
+.topbar{
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  padding:18px 0; border-bottom:1px solid var(--line);
 }
-.brandline b{font-family:var(--display); font-weight:600; font-size:14px; letter-spacing:.2em}
+.mark{
+  width:26px; height:26px; flex:none; position:relative;
+  border:1px solid var(--signal); display:grid; place-items:center;
+  font-family:var(--mono); font-size:13px; color:var(--signal); line-height:1;
+}
+.mark::after{content:""; position:absolute; inset:-4px; border:1px solid var(--signal-dim)}
+.topbar .nm{font-family:var(--mono); font-size:12px; letter-spacing:.26em}
+.topbar .sp{flex:1}
+.live{display:flex; align-items:center; gap:7px}
+.live .dot{width:6px;height:6px;border-radius:50%;background:var(--signal); animation:blink 2.4s infinite}
+
+/* 主張 ----------------------------------------------------- */
+header{padding:clamp(66px,13vw,150px) 0 clamp(50px,9vw,96px); position:relative}
+.reticle{
+  position:absolute; width:11px; height:11px; border:1px solid var(--faint); opacity:.55;
+}
+.reticle.tl{top:clamp(34px,6vw,70px); left:-5px; border-right:0; border-bottom:0}
+.reticle.tr{top:clamp(34px,6vw,70px); right:-5px; border-left:0; border-bottom:0}
 
 h1{
-  font-family:var(--display); font-weight:800;
-  font-size:clamp(34px,7.4vw,74px); line-height:1.3; letter-spacing:.01em;
-  margin:0; text-indent:-.06em;
+  font-family:var(--jp); font-weight:900;
+  font-size:clamp(38px,9.2vw,104px); line-height:1.12; letter-spacing:-.015em;
+  margin:0; text-indent:-.04em;
 }
-h1 .shu{color:var(--shu)}
-.sub{
-  margin:clamp(26px,4vw,38px) 0 0; max-width:30em;
-  font-size:clamp(14px,1.6vw,16px); color:var(--ink-soft); line-height:2.1;
+h1 .hl{
+  color:var(--signal);
+  display:inline-block; animation:wipe 1s cubic-bezier(.2,.75,.2,1) .5s both;
 }
-.en-name{
-  margin-top:clamp(30px,5vw,44px);
-  font-family:var(--display); font-size:13px; letter-spacing:.3em; color:var(--ink-faint);
+.lede{
+  margin:clamp(30px,5vw,46px) 0 0; max-width:36em;
+  font-size:clamp(13.5px,1.55vw,16px); line-height:2.15; color:var(--dim); font-weight:500;
 }
+.lede b{color:var(--bone); font-weight:700}
+.axis{
+  margin-top:clamp(32px,5vw,50px); display:flex; gap:clamp(14px,3vw,34px); flex-wrap:wrap;
+  font-family:var(--mono); font-size:11px; letter-spacing:.2em; color:var(--faint);
+}
+.axis span::before{content:"▚ "; color:var(--signal); opacity:.75}
 
-/* 数字 ---------------------------------------------------- */
-.nums{display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin:0; padding:0; list-style:none}
-.nums li{padding:clamp(26px,4vw,38px) 0; border-left:1px solid var(--rule); padding-left:clamp(16px,2.5vw,28px)}
-.nums li:first-child{border-left:0; padding-left:0}
-.nums .v{font-family:var(--display); font-weight:600; font-size:clamp(26px,4.4vw,46px); line-height:1; letter-spacing:.01em}
-.nums .v em{font-style:normal; font-size:.5em; margin-left:.25em; color:var(--ink-faint)}
-.nums .k{margin-top:10px; font-size:11px; letter-spacing:.18em; color:var(--ink-faint)}
-
-/* セクション ---------------------------------------------- */
-section{padding:clamp(56px,9vw,104px) 0}
-.sec-head{display:flex; align-items:baseline; gap:18px; margin-bottom:clamp(28px,4vw,44px)}
-.sec-head h2{
-  font-family:var(--display); font-weight:600; font-size:clamp(19px,2.6vw,25px);
-  margin:0; letter-spacing:.04em;
+/* 計器 ----------------------------------------------------- */
+.readout{
+  display:grid; grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--line); background:linear-gradient(180deg,var(--panel),transparent);
 }
-
-/* 製品 ---------------------------------------------------- */
-.apps{list-style:none; margin:0; padding:0}
-.apps li{border-top:1px solid var(--rule)}
-.apps li:last-child{border-bottom:1px solid var(--rule)}
-.apps a{
-  display:grid; grid-template-columns:auto 1fr auto; align-items:center;
-  gap:clamp(16px,3vw,30px); padding:clamp(20px,3vw,30px) 0;
-  text-decoration:none; color:inherit; position:relative;
-  transition:padding-left .45s cubic-bezier(.2,.7,.2,1);
+.readout div{padding:clamp(18px,2.6vw,26px) clamp(14px,2vw,22px); border-left:1px solid var(--line)}
+.readout div:first-child{border-left:0}
+.readout .n{
+  font-family:var(--mono); font-weight:600; font-size:clamp(20px,3.3vw,36px);
+  line-height:1; letter-spacing:-.02em; color:var(--bone);
 }
-.apps a::before{
-  content:""; position:absolute; left:0; right:0; top:0; bottom:0; z-index:-1;
-  background:var(--paper-deep); opacity:0; transition:opacity .35s ease;
-  margin:0 calc(var(--gut) * -0.4);
-}
-.apps a:hover{padding-left:14px}
-.apps a:hover::before{opacity:.7}
-.apps img{
-  width:clamp(50px,8vw,64px); height:clamp(50px,8vw,64px); border-radius:14px; display:block;
-  box-shadow:0 2px 10px rgba(22,19,14,.1), 0 0 0 1px rgba(22,19,14,.06);
-}
-.apps .nm{font-family:var(--display); font-weight:600; font-size:clamp(15px,2vw,18px); line-height:1.5}
-.apps .ds{font-size:12.5px; color:var(--ink-faint); margin-top:3px; line-height:1.75}
-.apps .go{
-  font-size:11px; letter-spacing:.16em; color:var(--shu); white-space:nowrap;
-  transition:transform .45s cubic-bezier(.2,.7,.2,1);
-}
-.apps a:hover .go{transform:translateX(6px)}
+.readout .n i{font-style:normal; font-size:.45em; color:var(--faint); margin-left:.3em}
+.readout .l{margin-top:11px; font-family:var(--mono); font-size:9.5px; letter-spacing:.2em; color:var(--faint)}
 
-/* 会社概要 ------------------------------------------------ */
-dl{margin:0; display:grid; grid-template-columns:10.5em 1fr}
-dl>*{padding:clamp(15px,2.2vw,20px) 0; border-top:1px solid var(--rule)}
-dt{color:var(--ink-faint); font-size:12px; letter-spacing:.14em}
-dd{margin:0; font-size:14.5px}
-dd .lat{display:block; margin-top:5px; font-size:12px; color:var(--ink-faint); letter-spacing:.04em}
-a.link{color:var(--shu); text-decoration:none; border-bottom:1px solid rgba(179,55,44,.3); padding-bottom:1px}
-a.link:hover{border-bottom-color:var(--shu)}
+/* 章 ------------------------------------------------------- */
+section{padding:clamp(58px,10vw,116px) 0}
+.sh{display:flex; align-items:baseline; gap:16px; margin-bottom:clamp(26px,4vw,42px); flex-wrap:wrap}
+.sh .idx{font-family:var(--mono); font-size:11px; color:var(--signal); letter-spacing:.2em}
+.sh h2{font-family:var(--jp); font-weight:900; font-size:clamp(17px,2.3vw,23px); margin:0; letter-spacing:.02em}
+.sh .en{font-family:var(--mono); font-size:10px; letter-spacing:.26em; color:var(--faint); margin-left:auto}
 
-/* 締め ---------------------------------------------------- */
-.closing{
-  font-family:var(--display); font-weight:400;
-  font-size:clamp(17px,2.6vw,26px); line-height:2.1; letter-spacing:.04em;
-  color:var(--ink); margin:0; max-width:22em;
+/* 製品 ----------------------------------------------------- */
+.titles{list-style:none; margin:0; padding:0; border-top:1px solid var(--line)}
+.titles li{border-bottom:1px solid var(--line)}
+.titles a{
+  display:grid; grid-template-columns:3.2em auto 1fr auto; align-items:center;
+  gap:clamp(13px,2.4vw,26px); padding:clamp(18px,2.8vw,26px) 0;
+  text-decoration:none; color:inherit; position:relative; isolation:isolate;
+  transition:padding-left .5s cubic-bezier(.2,.75,.2,1);
 }
-.closing span{color:var(--shu)}
+.titles a::before{
+  content:""; position:absolute; z-index:-1; inset:0;
+  margin:0 calc(var(--gut)*-0.35);
+  background:linear-gradient(90deg, rgba(255,59,31,.08), transparent 55%);
+  opacity:0; transition:opacity .4s ease;
+}
+.titles a::after{
+  content:""; position:absolute; left:0; bottom:-1px; height:1px; width:100%;
+  background:var(--signal); transform:scaleX(0); transform-origin:left;
+  transition:transform .55s cubic-bezier(.2,.75,.2,1);
+}
+.titles a:hover{padding-left:12px}
+.titles a:hover::before{opacity:1}
+.titles a:hover::after{transform:scaleX(1)}
+.titles .no{font-family:var(--mono); font-size:11px; color:var(--faint); letter-spacing:.1em}
+.titles img{
+  width:clamp(46px,7vw,58px); height:clamp(46px,7vw,58px); border-radius:12px; display:block;
+  box-shadow:0 0 0 1px var(--line), 0 6px 20px rgba(0,0,0,.5);
+}
+.titles .nm{font-weight:700; font-size:clamp(14.5px,1.9vw,17px); line-height:1.5}
+.titles .meta{
+  margin-top:4px; font-family:var(--mono); font-size:10.5px; letter-spacing:.11em; color:var(--dim);
+}
+.titles .meta b{color:var(--signal); font-weight:500}
+.titles .arrow{font-family:var(--mono); font-size:11px; color:var(--faint); letter-spacing:.14em; white-space:nowrap;
+  transition:color .35s ease, transform .5s cubic-bezier(.2,.75,.2,1)}
+.titles a:hover .arrow{color:var(--signal); transform:translateX(6px)}
 
-footer{padding:clamp(44px,7vw,72px) 0 clamp(52px,8vw,86px); border-top:1px solid var(--rule)}
-.foot{display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap}
-.foot small{font-size:11px; letter-spacing:.14em; color:var(--ink-faint)}
+/* 記録 ----------------------------------------------------- */
+dl{margin:0; display:grid; grid-template-columns:11em 1fr; border-top:1px solid var(--line)}
+dl>*{padding:clamp(14px,2.1vw,19px) 0; border-bottom:1px solid var(--line)}
+dt{font-family:var(--mono); font-size:10px; letter-spacing:.2em; color:var(--faint); text-transform:uppercase}
+dd{margin:0; font-size:14px; font-weight:500}
+dd .sub{display:block; margin-top:5px; font-family:var(--mono); font-size:11px; color:var(--dim); letter-spacing:.05em}
+a.lk{color:var(--signal); text-decoration:none; border-bottom:1px solid var(--signal-dim)}
+a.lk:hover{border-bottom-color:var(--signal)}
 
-@media (max-width:620px){
-  .nums{grid-template-columns:1fr; }
-  .nums li{border-left:0; border-top:1px solid var(--rule); padding-left:0}
-  .nums li:first-child{border-top:0}
+/* 締め ----------------------------------------------------- */
+.manifesto{
+  border:1px solid var(--line); padding:clamp(28px,5vw,58px);
+  background:linear-gradient(135deg, var(--panel), transparent 70%);
+  position:relative;
+}
+.manifesto .reticle{top:-1px; left:-1px; border-right:0; border-bottom:0; border-color:var(--signal); opacity:1}
+.manifesto p{
+  margin:0; font-weight:900; font-size:clamp(17px,2.9vw,30px); line-height:1.85;
+  letter-spacing:.01em; max-width:19em;
+}
+.manifesto p em{font-style:normal; color:var(--signal)}
+.manifesto .sig{margin-top:clamp(20px,3vw,32px); font-family:var(--mono); font-size:10px; letter-spacing:.28em; color:var(--faint)}
+
+footer{padding:clamp(34px,5vw,56px) 0 clamp(48px,7vw,80px); border-top:1px solid var(--line)}
+.ft{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:10px; letter-spacing:.2em; color:var(--faint)}
+
+@media (max-width:760px){
+  .readout{grid-template-columns:repeat(2,1fr)}
+  .readout div:nth-child(3){border-left:0}
+  .readout div:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (max-width:560px){
   dl{grid-template-columns:1fr}
-  dt{padding-bottom:0; border-top:1px solid var(--rule)}
-  dd{padding-top:6px; border-top:0}
-  .apps a{grid-template-columns:auto 1fr; }
-  .apps .go{grid-column:2; margin-top:6px}
+  dt{padding-bottom:0; border-bottom:0}
+  dd{padding-top:5px}
+  .titles a{grid-template-columns:3em auto 1fr}
+  .titles .arrow{grid-column:2/-1; margin-top:7px}
+  .sh .en{display:none}
 }
 </style>
 </head>
 <body>
+<div class="grid-bg"></div><div class="scan"></div><div class="glow"></div>
 
 <div class="wrap">
 
+  <div class="topbar a a1">
+    <div class="mark">∞</div>
+    <div class="nm">INFINITY, K.K.</div>
+    <div class="sp"></div>
+    <div class="live"><span class="dot"></span><span class="tag">3 TITLES LIVE</span></div>
+  </div>
+
   <header>
-    <div class="brandline r d1">
-      <div class="seal">∞</div>
-      <b>INFINITY, K.K.</b>
-    </div>
+    <span class="reticle tl"></span><span class="reticle tr"></span>
 
-    <h1 class="r d2">
-      ちりも、<span class="shu">積もれば。</span><br>
-      毎日ひらきたくなる<br>
-      アプリをつくる。
-    </h1>
+    <div class="tag a a1" style="margin-bottom:clamp(22px,4vw,38px)">Habit Systems Research ／ Tokyo</div>
 
-    <p class="sub r d3">
-      東京・南青山の小さな開発会社です。語学、健康、ゲーム。
-      一日五分の積み重ねが、目に見えて形になっていく。
-      そういうものだけを、企画から運営まで自分たちの手でつくっています。
+    <h1 class="a a2">習慣は、<span class="hl">設計できる。</span></h1>
+
+    <p class="lede a a3">
+      人が明日もまた開く理由は、偶然ではない。<b>積み重ねが目に見える形で返ってくる</b>とき、
+      人は勝手に続ける。わたしたちはその構造だけを研究し、アプリケーションとして実装している。
+      語学、身体、遊戯——領域は違っても、扱っている問いは一つだ。
     </p>
 
-    <div class="en-name r d4">INFINITY, K.K. — TOKYO, JAPAN</div>
+    <div class="axis a a4">
+      <span>LANGUAGE</span><span>BODY</span><span>PLAY</span>
+    </div>
   </header>
 
-  <div class="hr"><i></i></div>
-
-  <ul class="nums r d5">
-    <li><div class="v">3<em>本</em></div><div class="k">APPS ON STORE</div></li>
-    <li><div class="v">22<em>言語</em></div><div class="k">LANGUAGES</div></li>
-    <li><div class="v">64,620<em>語</em></div><div class="k">WORDS CURATED</div></li>
-  </ul>
-
-  <div class="hr"><i></i></div>
+  <div class="readout a a5">
+    <div><div class="n" data-to="3">0</div><div class="l">TITLES SHIPPED</div></div>
+    <div><div class="n" data-to="22">0</div><div class="l">LANGUAGES</div></div>
+    <div><div class="n" data-to="64620">0</div><div class="l">WORDS CURATED</div></div>
+    <div><div class="n">2021<i>—</i></div><div class="l">ESTABLISHED</div></div>
+  </div>
 
   <section>
-    <div class="sec-head">
-      <span class="label">Products</span>
-      <h2>提供中のアプリ</h2>
+    <div class="sh">
+      <span class="idx">§01</span><h2>開発中・提供中のタイトル</h2><span class="en">PRODUCTS</span>
     </div>
 
-    <ul class="apps">
+    <ul class="titles">
       <li><a href="https://apps.apple.com/jp/app/id6792366503">
+        <span class="no">01</span>
         <img src="icons/6792366503.png" alt="ちりつも単語" width="512" height="512" loading="lazy">
-        <div>
-          <div class="nm">ちりつも単語</div>
-          <div class="ds">全22言語・64,620語。文字が読めないところから始められる単語学習アプリ</div>
-        </div>
-        <div class="go">App Store ↗</div>
+        <span>
+          <span class="nm">ちりつも単語</span>
+          <span class="meta"><b>22</b> LANGUAGES ／ <b>64,620</b> WORDS ／ 語学</span>
+        </span>
+        <span class="arrow">APP STORE →</span>
       </a></li>
 
       <li><a href="https://apps.apple.com/jp/app/id6808814090">
+        <span class="no">02</span>
         <img src="icons/6808814090.png" alt="PawPlanet" width="512" height="512" loading="lazy">
-        <div>
-          <div class="nm">PawPlanet</div>
-          <div class="ds">歩いた歩数でペットが育ち、日本と世界をめぐっていく</div>
-        </div>
-        <div class="go">App Store ↗</div>
+        <span>
+          <span class="nm">PawPlanet</span>
+          <span class="meta"><b>156</b> CITIES ／ 歩数連動 ／ 身体</span>
+        </span>
+        <span class="arrow">APP STORE →</span>
       </a></li>
 
       <li><a href="https://apps.apple.com/jp/app/id6808748612">
+        <span class="no">03</span>
         <img src="icons/6808748612.png" alt="カード将棋" width="512" height="512" loading="lazy">
-        <div>
-          <div class="nm">カード将棋</div>
-          <div class="ds">将棋はそのまま。カードで局面が変わる変則将棋バトル</div>
-        </div>
-        <div class="go">App Store ↗</div>
+        <span>
+          <span class="nm">カード将棋</span>
+          <span class="meta">変則将棋 ／ 対人戦 ／ 遊戯</span>
+        </span>
+        <span class="arrow">APP STORE →</span>
       </a></li>
     </ul>
   </section>
 
   <section>
-    <div class="sec-head">
-      <span class="label">Company</span>
-      <h2>会社概要</h2>
+    <div class="sh">
+      <span class="idx">§02</span><h2>会社概要</h2><span class="en">RECORD</span>
     </div>
 
     <dl>
       <dt>商号</dt>
-      <dd>株式会社インフィニティ<span class="lat">INFINITY, K.K.</span></dd>
+      <dd>株式会社インフィニティ<span class="sub">INFINITY, K.K.</span></dd>
 
       <dt>所在地</dt>
-      <dd>〒107-0062　東京都港区南青山2-2-15
-        <span class="lat">2-2-15 Minami-Aoyama, Minato-ku, Tokyo 107-0062, Japan</span></dd>
+      <dd>〒107-0062　東京都港区南青山 2-2-15
+        <span class="sub">2-2-15 MINAMI-AOYAMA, MINATO-KU, TOKYO 107-0062, JAPAN</span></dd>
 
       <dt>代表者</dt>
-      <dd>代表取締役　鈴木 嘉哲<span class="lat">Yoshitetsu Suzuki, Representative Director</span></dd>
+      <dd>代表取締役　鈴木 嘉哲<span class="sub">YOSHITETSU SUZUKI, REPRESENTATIVE DIRECTOR</span></dd>
 
       <dt>事業内容</dt>
-      <dd>スマートフォンアプリケーションの企画・開発・運営<span class="lat">iOS / Android / Web</span></dd>
+      <dd>スマートフォンアプリケーションの企画・開発・運営<span class="sub">iOS ／ ANDROID ／ WEB</span></dd>
 
-      <dt>お問い合わせ</dt>
-      <dd><a class="link" href="mailto:suzupon@01-infinity.com">suzupon@01-infinity.com</a></dd>
+      <dt>連絡先</dt>
+      <dd><a class="lk" href="mailto:suzupon@01-infinity.com">suzupon@01-infinity.com</a></dd>
     </dl>
   </section>
 
   <section>
-    <p class="closing r d6">
-      小さな行動が積み上がって、<br>
-      いつのまにか遠くまで来ている。<br>
-      <span>その手触りを、つくっています。</span>
-    </p>
+    <div class="manifesto a a6">
+      <span class="reticle"></span>
+      <p>一日五分の行動が、<br>十年後の自分を決める。<br><em>その五分を、設計する。</em></p>
+      <div class="sig">INFINITY, K.K. ／ 習慣設計研究</div>
+    </div>
   </section>
 
   <footer>
-    <div class="foot">
-      <small>© <span id="y">2026</span> INFINITY, K.K.</small>
-      <small>株式会社インフィニティ</small>
+    <div class="ft">
+      <span>© <span id="y">2026</span> INFINITY, K.K.</span>
+      <span>株式会社インフィニティ</span>
     </div>
   </footer>
-
 </div>
 
-<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+<script>
+document.getElementById('y').textContent = new Date().getFullYear();
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.n[data-to]').forEach(el=>{
+    const to = +el.dataset.to;
+    if(reduce){ el.textContent = to.toLocaleString(); return; }
+    const dur = 1300, t0 = performance.now() + 500;
+    function step(now){
+      const p = Math.min(1, Math.max(0, (now - t0) / dur));
+      const e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(to * e).toLocaleString();
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+})();
+</script>
 </body>
 </html>
