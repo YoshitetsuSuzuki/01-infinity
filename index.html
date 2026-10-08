@@ -4,113 +4,298 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>株式会社インフィニティ｜INFINITY, K.K.</title>
-<meta name="description" content="株式会社インフィニティ（INFINITY, K.K.）は、東京・南青山でスマートフォンアプリの企画・開発・運営を行っています。">
+<meta name="description" content="株式会社インフィニティ（INFINITY, K.K.）は、東京・南青山でスマートフォンアプリの企画・開発・運営を行っています。毎日ひらきたくなるアプリを、小さな積み重ねから。">
 <link rel="canonical" href="https://01-infinity.com/">
 <meta property="og:title" content="株式会社インフィニティ｜INFINITY, K.K.">
-<meta property="og:description" content="スマートフォンアプリの企画・開発・運営">
+<meta property="og:description" content="毎日ひらきたくなるアプリを、小さな積み重ねから。">
 <meta property="og:url" content="https://01-infinity.com/">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#faf7f1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+
 <style>
-  :root{
-    --ink:#14161c; --sub:#5b6272; --line:#e4e7ee; --bg:#ffffff; --soft:#f7f8fb; --accent:#2b5ce7;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0; background:var(--bg); color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
-    line-height:1.85; -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:760px; margin:0 auto; padding:0 24px}
-  header{padding:72px 0 56px; border-bottom:1px solid var(--line)}
-  .mark{font-size:12px; letter-spacing:.22em; color:var(--accent); font-weight:700}
-  h1{font-size:30px; margin:14px 0 6px; letter-spacing:.02em; font-weight:800}
-  .en{font-size:14px; color:var(--sub); letter-spacing:.08em}
-  .lede{margin-top:28px; font-size:16px; color:var(--sub); max-width:34em}
-  section{padding:56px 0; border-bottom:1px solid var(--line)}
-  h2{font-size:12px; letter-spacing:.2em; color:var(--sub); font-weight:700; margin:0 0 24px}
-  dl{display:grid; grid-template-columns:8.5em 1fr; gap:14px 24px; margin:0}
-  dt{color:var(--sub); font-size:14px}
-  dd{margin:0; font-size:15px}
-  .apps{display:grid; gap:12px; margin:0; padding:0; list-style:none}
-  .apps a{
-    display:block; padding:18px 20px; background:var(--soft); border:1px solid var(--line);
-    border-radius:12px; text-decoration:none; color:inherit; transition:border-color .15s, transform .15s;
-  }
-  .apps a:hover{border-color:var(--accent); transform:translateY(-1px)}
-  .apps .name{font-weight:700; font-size:15px}
-  .apps .note{font-size:13px; color:var(--sub); margin-top:2px}
-  a{color:var(--accent)}
-  footer{padding:40px 0 64px; font-size:13px; color:var(--sub)}
-  @media (max-width:560px){
-    header{padding:52px 0 40px} h1{font-size:24px}
-    dl{grid-template-columns:1fr; gap:4px 0}
-    dt{font-size:12px; margin-top:12px}
-  }
+:root{
+  --paper:#faf7f1;
+  --paper-deep:#f2ede3;
+  --ink:#16130e;
+  --ink-soft:#4a443a;
+  --ink-faint:#8d8578;
+  --rule:#ded7c9;
+  --shu:#b3372c;          /* 朱 */
+  --shu-soft:#d9695c;
+
+  --display:"Shippori Mincho B1", "Hiragino Mincho ProN", serif;
+  --body:"Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+
+  --gut: clamp(20px, 5vw, 72px);
+  --max: 1080px;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-weight:400;
+  line-height:1.95;
+  letter-spacing:.02em;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* 紙の質感 ------------------------------------------------ */
+body::before{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  opacity:.055; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+body::after{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:radial-gradient(120% 80% at 78% -10%, rgba(179,55,44,.055), transparent 60%);
+}
+.wrap{position:relative; z-index:1; max-width:var(--max); margin:0 auto; padding:0 var(--gut)}
+
+/* 登場 ---------------------------------------------------- */
+@keyframes rise{from{opacity:0; transform:translateY(16px)} to{opacity:1; transform:none}}
+@keyframes draw{from{transform:scaleX(0)} to{transform:scaleX(1)}}
+.r{opacity:0; animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+.d1{animation-delay:.05s}.d2{animation-delay:.16s}.d3{animation-delay:.27s}
+.d4{animation-delay:.38s}.d5{animation-delay:.5s}.d6{animation-delay:.62s}
+@media (prefers-reduced-motion:reduce){.r{opacity:1; animation:none} .hr i{transform:none !important}}
+
+/* 罫 ------------------------------------------------------ */
+.hr{height:1px; background:transparent; overflow:hidden}
+.hr i{display:block; height:1px; background:var(--rule); transform-origin:left;
+      animation:draw 1.1s cubic-bezier(.2,.7,.2,1) forwards; animation-delay:.3s; transform:scaleX(0)}
+
+/* 見出し小ラベル ------------------------------------------ */
+.label{
+  font-size:10px; letter-spacing:.34em; text-transform:uppercase;
+  color:var(--ink-faint); font-weight:500;
+}
+
+/* ヘッダー ------------------------------------------------ */
+header{padding:clamp(40px,7vw,76px) 0 clamp(64px,12vw,140px)}
+.brandline{display:flex; align-items:center; gap:14px; margin-bottom:clamp(44px,9vw,96px)}
+.seal{
+  width:30px; height:30px; flex:none; border-radius:5px;
+  background:var(--shu); color:#fff; display:grid; place-items:center;
+  font-family:var(--display); font-weight:800; font-size:15px; line-height:1;
+  box-shadow:0 1px 0 rgba(0,0,0,.12);
+}
+.brandline b{font-family:var(--display); font-weight:600; font-size:14px; letter-spacing:.2em}
+
+h1{
+  font-family:var(--display); font-weight:800;
+  font-size:clamp(34px,7.4vw,74px); line-height:1.3; letter-spacing:.01em;
+  margin:0; text-indent:-.06em;
+}
+h1 .shu{color:var(--shu)}
+.sub{
+  margin:clamp(26px,4vw,38px) 0 0; max-width:30em;
+  font-size:clamp(14px,1.6vw,16px); color:var(--ink-soft); line-height:2.1;
+}
+.en-name{
+  margin-top:clamp(30px,5vw,44px);
+  font-family:var(--display); font-size:13px; letter-spacing:.3em; color:var(--ink-faint);
+}
+
+/* 数字 ---------------------------------------------------- */
+.nums{display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin:0; padding:0; list-style:none}
+.nums li{padding:clamp(26px,4vw,38px) 0; border-left:1px solid var(--rule); padding-left:clamp(16px,2.5vw,28px)}
+.nums li:first-child{border-left:0; padding-left:0}
+.nums .v{font-family:var(--display); font-weight:600; font-size:clamp(26px,4.4vw,46px); line-height:1; letter-spacing:.01em}
+.nums .v em{font-style:normal; font-size:.5em; margin-left:.25em; color:var(--ink-faint)}
+.nums .k{margin-top:10px; font-size:11px; letter-spacing:.18em; color:var(--ink-faint)}
+
+/* セクション ---------------------------------------------- */
+section{padding:clamp(56px,9vw,104px) 0}
+.sec-head{display:flex; align-items:baseline; gap:18px; margin-bottom:clamp(28px,4vw,44px)}
+.sec-head h2{
+  font-family:var(--display); font-weight:600; font-size:clamp(19px,2.6vw,25px);
+  margin:0; letter-spacing:.04em;
+}
+
+/* 製品 ---------------------------------------------------- */
+.apps{list-style:none; margin:0; padding:0}
+.apps li{border-top:1px solid var(--rule)}
+.apps li:last-child{border-bottom:1px solid var(--rule)}
+.apps a{
+  display:grid; grid-template-columns:auto 1fr auto; align-items:center;
+  gap:clamp(16px,3vw,30px); padding:clamp(20px,3vw,30px) 0;
+  text-decoration:none; color:inherit; position:relative;
+  transition:padding-left .45s cubic-bezier(.2,.7,.2,1);
+}
+.apps a::before{
+  content:""; position:absolute; left:0; right:0; top:0; bottom:0; z-index:-1;
+  background:var(--paper-deep); opacity:0; transition:opacity .35s ease;
+  margin:0 calc(var(--gut) * -0.4);
+}
+.apps a:hover{padding-left:14px}
+.apps a:hover::before{opacity:.7}
+.apps img{
+  width:clamp(50px,8vw,64px); height:clamp(50px,8vw,64px); border-radius:14px; display:block;
+  box-shadow:0 2px 10px rgba(22,19,14,.1), 0 0 0 1px rgba(22,19,14,.06);
+}
+.apps .nm{font-family:var(--display); font-weight:600; font-size:clamp(15px,2vw,18px); line-height:1.5}
+.apps .ds{font-size:12.5px; color:var(--ink-faint); margin-top:3px; line-height:1.75}
+.apps .go{
+  font-size:11px; letter-spacing:.16em; color:var(--shu); white-space:nowrap;
+  transition:transform .45s cubic-bezier(.2,.7,.2,1);
+}
+.apps a:hover .go{transform:translateX(6px)}
+
+/* 会社概要 ------------------------------------------------ */
+dl{margin:0; display:grid; grid-template-columns:10.5em 1fr}
+dl>*{padding:clamp(15px,2.2vw,20px) 0; border-top:1px solid var(--rule)}
+dt{color:var(--ink-faint); font-size:12px; letter-spacing:.14em}
+dd{margin:0; font-size:14.5px}
+dd .lat{display:block; margin-top:5px; font-size:12px; color:var(--ink-faint); letter-spacing:.04em}
+a.link{color:var(--shu); text-decoration:none; border-bottom:1px solid rgba(179,55,44,.3); padding-bottom:1px}
+a.link:hover{border-bottom-color:var(--shu)}
+
+/* 締め ---------------------------------------------------- */
+.closing{
+  font-family:var(--display); font-weight:400;
+  font-size:clamp(17px,2.6vw,26px); line-height:2.1; letter-spacing:.04em;
+  color:var(--ink); margin:0; max-width:22em;
+}
+.closing span{color:var(--shu)}
+
+footer{padding:clamp(44px,7vw,72px) 0 clamp(52px,8vw,86px); border-top:1px solid var(--rule)}
+.foot{display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap}
+.foot small{font-size:11px; letter-spacing:.14em; color:var(--ink-faint)}
+
+@media (max-width:620px){
+  .nums{grid-template-columns:1fr; }
+  .nums li{border-left:0; border-top:1px solid var(--rule); padding-left:0}
+  .nums li:first-child{border-top:0}
+  dl{grid-template-columns:1fr}
+  dt{padding-bottom:0; border-top:1px solid var(--rule)}
+  dd{padding-top:6px; border-top:0}
+  .apps a{grid-template-columns:auto 1fr; }
+  .apps .go{grid-column:2; margin-top:6px}
+}
 </style>
 </head>
 <body>
+
 <div class="wrap">
 
   <header>
-    <div class="mark">INFINITY, K.K.</div>
-    <h1>株式会社インフィニティ</h1>
-    <div class="en">Infinity — Tokyo, Japan</div>
-    <p class="lede">
-      毎日ひらきたくなるスマートフォンアプリを、企画から開発・運営まで一貫してつくっています。
-      学習・健康・ゲーム。日々の小さな積み重ねが形になるものを大切にしています。
+    <div class="brandline r d1">
+      <div class="seal">∞</div>
+      <b>INFINITY, K.K.</b>
+    </div>
+
+    <h1 class="r d2">
+      ちりも、<span class="shu">積もれば。</span><br>
+      毎日ひらきたくなる<br>
+      アプリをつくる。
+    </h1>
+
+    <p class="sub r d3">
+      東京・南青山の小さな開発会社です。語学、健康、ゲーム。
+      一日五分の積み重ねが、目に見えて形になっていく。
+      そういうものだけを、企画から運営まで自分たちの手でつくっています。
     </p>
+
+    <div class="en-name r d4">INFINITY, K.K. — TOKYO, JAPAN</div>
   </header>
 
-  <section>
-    <h2>SERVICES／事業内容</h2>
-    <dl>
-      <dt>主な事業</dt>
-      <dd>スマートフォンアプリケーションの企画・開発・運営</dd>
-      <dt>領域</dt>
-      <dd>語学学習、ヘルスケア、ゲーム、ウェブサービス</dd>
-      <dt>プラットフォーム</dt>
-      <dd>iOS／Android／ウェブ</dd>
-    </dl>
-  </section>
+  <div class="hr"><i></i></div>
+
+  <ul class="nums r d5">
+    <li><div class="v">3<em>本</em></div><div class="k">APPS ON STORE</div></li>
+    <li><div class="v">22<em>言語</em></div><div class="k">LANGUAGES</div></li>
+    <li><div class="v">64,620<em>語</em></div><div class="k">WORDS CURATED</div></li>
+  </ul>
+
+  <div class="hr"><i></i></div>
 
   <section>
-    <h2>PRODUCTS／提供中のアプリ</h2>
+    <div class="sec-head">
+      <span class="label">Products</span>
+      <h2>提供中のアプリ</h2>
+    </div>
+
     <ul class="apps">
       <li><a href="https://apps.apple.com/jp/app/id6792366503">
-        <div class="name">ちりつも単語</div>
-        <div class="note">全22言語・64,620語の単語学習アプリ</div>
+        <img src="icons/6792366503.png" alt="ちりつも単語" width="512" height="512" loading="lazy">
+        <div>
+          <div class="nm">ちりつも単語</div>
+          <div class="ds">全22言語・64,620語。文字が読めないところから始められる単語学習アプリ</div>
+        </div>
+        <div class="go">App Store ↗</div>
       </a></li>
+
       <li><a href="https://apps.apple.com/jp/app/id6808814090">
-        <div class="name">PawPlanet（パウプラネット）</div>
-        <div class="note">歩いた歩数でペットを育て、日本と世界をめぐる</div>
+        <img src="icons/6808814090.png" alt="PawPlanet" width="512" height="512" loading="lazy">
+        <div>
+          <div class="nm">PawPlanet</div>
+          <div class="ds">歩いた歩数でペットが育ち、日本と世界をめぐっていく</div>
+        </div>
+        <div class="go">App Store ↗</div>
       </a></li>
+
       <li><a href="https://apps.apple.com/jp/app/id6808748612">
-        <div class="name">カード将棋 〜変則将棋バトル〜</div>
-        <div class="note">将棋はそのまま。カードで局面が変わる対戦ゲーム</div>
+        <img src="icons/6808748612.png" alt="カード将棋" width="512" height="512" loading="lazy">
+        <div>
+          <div class="nm">カード将棋</div>
+          <div class="ds">将棋はそのまま。カードで局面が変わる変則将棋バトル</div>
+        </div>
+        <div class="go">App Store ↗</div>
       </a></li>
     </ul>
   </section>
 
   <section>
-    <h2>COMPANY／会社概要</h2>
+    <div class="sec-head">
+      <span class="label">Company</span>
+      <h2>会社概要</h2>
+    </div>
+
     <dl>
       <dt>商号</dt>
-      <dd>株式会社インフィニティ<br><span class="en">INFINITY, K.K.</span></dd>
+      <dd>株式会社インフィニティ<span class="lat">INFINITY, K.K.</span></dd>
+
       <dt>所在地</dt>
-      <dd>〒107-0062　東京都港区南青山2-2-15<br>
-          <span class="en">2-2-15 Minami-Aoyama, Minato-ku, Tokyo 107-0062, Japan</span></dd>
+      <dd>〒107-0062　東京都港区南青山2-2-15
+        <span class="lat">2-2-15 Minami-Aoyama, Minato-ku, Tokyo 107-0062, Japan</span></dd>
+
       <dt>代表者</dt>
-      <dd>代表取締役　鈴木　嘉哲</dd>
+      <dd>代表取締役　鈴木 嘉哲<span class="lat">Yoshitetsu Suzuki, Representative Director</span></dd>
+
+      <dt>事業内容</dt>
+      <dd>スマートフォンアプリケーションの企画・開発・運営<span class="lat">iOS / Android / Web</span></dd>
+
       <dt>お問い合わせ</dt>
-      <dd><a href="mailto:suzupon@01-infinity.com">suzupon@01-infinity.com</a></dd>
+      <dd><a class="link" href="mailto:suzupon@01-infinity.com">suzupon@01-infinity.com</a></dd>
     </dl>
   </section>
 
+  <section>
+    <p class="closing r d6">
+      小さな行動が積み上がって、<br>
+      いつのまにか遠くまで来ている。<br>
+      <span>その手触りを、つくっています。</span>
+    </p>
+  </section>
+
   <footer>
-    © <span id="y">2026</span> INFINITY, K.K. All rights reserved.
+    <div class="foot">
+      <small>© <span id="y">2026</span> INFINITY, K.K.</small>
+      <small>株式会社インフィニティ</small>
+    </div>
   </footer>
 
 </div>
+
 <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
