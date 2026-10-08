@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>株式会社インフィニティ｜INFINITY, K.K.</title>
-<meta name="description" content="株式会社インフィニティ（INFINITY, K.K.）— ἕξις（習慣）の形成を研究するアプリケーション開発会社。東京都港区南青山。語彙・歩行・自己・戦術・賭け、5つの実装。">
+<title>INFINITY GAMES｜株式会社インフィニティ</title>
+<meta name="description" content="INFINITY GAMES（株式会社インフィニティ）— 自己産出と進化を主題にアプリケーションを設計する開発会社。東京都港区南青山。語彙・移動・自己・戦術・選択、5つの実装。">
 <link rel="canonical" href="https://01-infinity.com/">
-<meta property="og:title" content="株式会社インフィニティ｜INFINITY, K.K.">
-<meta property="og:description" content="人は、繰り返したものになる。— ἕξις / HABITUS 研究">
+<meta property="og:title" content="INFINITY GAMES｜株式会社インフィニティ">
+<meta property="og:description" content="我々は、自らを作り続ける構造である。— AUTOPOIESIS / 自己産出の工学">
 <meta property="og:url" content="https://01-infinity.com/">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#05070b">
@@ -64,6 +64,10 @@ body{margin:0;background:var(--void);color:var(--bone);font-family:var(--jp);fon
 .sigil svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 26s linear infinite}
 .sigil b{font-family:var(--mono);font-size:12px;color:var(--cy);line-height:1}
 .topbar .nm{font-family:var(--mono);font-size:12px;letter-spacing:.26em}
+.brand{display:flex;flex-direction:column;gap:4px;line-height:1}
+.brand .bn{font-family:var(--mono);font-weight:600;font-size:13px;letter-spacing:.26em;white-space:nowrap}
+.brand .bn s{text-decoration:none;color:var(--cy);font-weight:400;letter-spacing:.3em}
+.brand .bl{font-size:9.5px;letter-spacing:.14em;color:var(--faint);font-weight:500}
 .topbar .sp{flex:1}
 .live{display:flex;align-items:center;gap:7px}
 .live i{width:5px;height:5px;border-radius:50%;background:var(--cy);animation:blink 2.6s infinite}
@@ -100,6 +104,36 @@ h1 em{font-style:normal;color:var(--cy);text-shadow:0 0 34px rgba(110,240,220,.4
   stroke-dasharray:420;stroke-dashoffset:420;animation:dash 2.4s cubic-bezier(.4,0,.2,1) .7s forwards}
 .plot .dn{fill:none;stroke:var(--faint);stroke-width:1.5;stroke-dasharray:3 4}
 .plot text{font-family:var(--mono);font-size:7.5px;fill:var(--faint);letter-spacing:.1em}
+.fig .eq sub{font-size:.78em}
+.bif{margin:0;width:clamp(240px,33vw,410px);flex:none}
+.bifp{position:relative}
+.bif canvas{display:block;width:100%;height:clamp(152px,20vw,228px);
+  border:1px solid var(--line-up);background:rgba(0,0,0,.42)}
+.bif .mk{position:absolute;top:1px;bottom:1px;width:1px;background:rgba(255,255,255,.13)}
+.bif .mk span{position:absolute;top:5px;left:5px;font-family:var(--mono);font-size:7.5px;
+  color:var(--faint);letter-spacing:.08em;white-space:nowrap}
+.bif .mkc{background:rgba(110,240,220,.45)}
+.bif .mkc span{color:var(--cy)}
+.bif .bx{display:flex;justify-content:space-between;margin-top:8px;
+  font-family:var(--mono);font-size:7.5px;color:var(--faint);letter-spacing:.12em}
+
+/* 原理 ---------------------------------------------------- */
+.ax3{list-style:none;margin:0;padding:0;display:grid;gap:1px;background:var(--line);
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  border:1px solid var(--line)}
+@media (max-width:880px){.ax3{grid-template-columns:1fr}}
+.ax3 li{background:var(--void);padding:clamp(20px,3vw,32px);position:relative;isolation:isolate}
+.ax3 li::before{content:"";position:absolute;z-index:-1;inset:0;transition:opacity .55s;opacity:0;
+  background:radial-gradient(115% 92% at 0 0,rgba(110,240,220,.06),transparent 62%)}
+.ax3 li:hover::before{opacity:1}
+.ax3 .n{display:block;font-family:var(--cl);font-size:clamp(30px,4.4vw,44px);color:var(--cy);
+  opacity:.45;line-height:1;margin-bottom:13px;letter-spacing:.04em}
+.ax3 h3{margin:0 0 13px;font-weight:900;font-size:clamp(15px,1.9vw,18px);line-height:1.62}
+.ax3 p{margin:0;font-size:12.5px;line-height:2.06;color:var(--dim)}
+.ax3 p b{color:var(--bone);font-weight:700}
+.ax3 .gk{font-family:var(--cl);font-style:italic;color:var(--cy);font-size:1.15em}
+.note{margin:clamp(22px,3.5vw,34px) 0 0;font-size:13px;line-height:2.1;color:var(--dim)}
+.note b{color:var(--cy);font-weight:700}
 
 /* 章 ------------------------------------------------------ */
 section{padding:clamp(54px,9vw,108px) 0}
@@ -155,7 +189,8 @@ footer{padding:clamp(32px,5vw,54px) 0 clamp(46px,7vw,78px);border-top:1px solid 
 .ft{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
   font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--faint)}
 
-@media (max-width:840px){.fig{grid-template-columns:1fr}.plot{width:100%;max-width:330px}}
+@media (max-width:840px){.fig{grid-template-columns:1fr}.plot{width:100%;max-width:330px}
+  .bif{width:100%;max-width:440px}}
 @media (max-width:560px){
   dl{grid-template-columns:1fr}dt{padding-bottom:0;border-bottom:0}dd{padding-top:5px}
   .impl a{grid-template-columns:2.6em auto 1fr}.impl .ar{grid-column:2/-1;margin-top:6px}
@@ -177,24 +212,29 @@ footer{padding:clamp(32px,5vw,54px) 0 clamp(46px,7vw,78px);border-top:1px solid 
       </svg>
       <b>&#8734;</b>
     </div>
-    <div class="nm">INFINITY, K.K.</div>
+    <div class="brand">
+      <span class="bn">INFINITY <s>GAMES</s></span>
+      <span class="bl">株式会社インフィニティ</span>
+    </div>
     <div class="sp"></div>
     <div class="live"><i></i><span class="tag">5 implementations live</span></div>
   </div>
 
   <header>
-    <div class="greek a a1">&#7957;&#958;&#953;&#962; &nbsp;/&nbsp; habitus</div>
-    <h1 class="a a2">人は、繰り返した<br><em>ものになる。</em></h1>
+    <div class="greek a a1">&#945;&#8016;&#964;&#959;&#960;&#959;&#943;&#951;&#963;&#953;&#962; &nbsp;/&nbsp; autopoiesis</div>
+    <h1 class="a a2">我々は、自らを<br><em>作り続ける構造</em>である。</h1>
 
     <p class="lede a a3">
-      アリストテレスは『ニコマコス倫理学』で、卓越（<span class="gk">&#7936;&#961;&#949;&#964;&#942;</span>）とは一度の行為ではなく、
-      反復によって身体に刻み込まれた状態——<span class="gk">&#7957;&#958;&#953;&#962;</span> であると書いた。
-      ラテン語はこれを <i>habitus</i> と訳し、やがて「習慣」という語になった。
+      生物は、与えられた形を保っているのではない。膜を作り、その膜の内側で膜の材料を作り、
+      絶え間なく自分自身を作り直すことによってのみ、形を保っている。
+      マトゥラーナとヴァレラはこの回路を <span class="gk">&#945;&#8016;&#964;&#959;&#960;&#959;&#943;&#951;&#963;&#953;&#962;</span>
+      ——<b>自己産出</b>と命名した。作ることをやめた瞬間に、それは形でなくなる。
     </p>
     <p class="lede a a4">
-      二千四百年を経て、我々はこの古い命題を<b>工学の問題</b>として扱っている。
-      人が明日もまた手を伸ばすかどうかは、意志の強度ではなく、系の設計に従属する。
-      <b>設計対象は、意志ではない。構造である。</b>
+      人間の成長も、同じ型をしている。知識が増えるのではなく、知識を増やす仕組みそのものが書き換わる。
+      我々はその過程——<b>語彙・移動・自己認識・判断・選択</b>——を、観測でき、介入でき、
+      動かすことのできる系として設計している。
+      <b>設計対象は、人ではない。人が置かれる場である。</b>
     </p>
 
     <div class="axis a a5">
@@ -205,34 +245,74 @@ footer{padding:clamp(32px,5vw,54px) 0 clamp(46px,7vw,78px);border-top:1px solid 
   <section style="padding-top:0">
     <div class="fig a a6">
       <div>
-        <div class="cap">FIG.01 — 微小な差分の累乗</div>
-        <h3>一日あたり一パーセントの差は、一年で三十七倍に開く。</h3>
+        <div class="cap">FIG.01 — 分岐図 ／ LOGISTIC MAP</div>
+        <h3>系は、少しずつ強くなるのではない。臨界点で、構造そのものが分かれる。</h3>
         <p>
-          人間が一日で変えられる量は、観測できないほど小さい。
-          しかしその微小量は加算ではなく累乗として働くため、三百六十五回の反復ののち、
-          二つの軌道のあいだには桁違いの距離が生じる。
-          我々が設計しているのは、この指数の底である。
+          入力 <i>r</i> を滑らかに増やしていくと、系の帰着先は滑らかには動かない。
+          一本だった線は <b>r = 3</b> で二本に割れ、<b>3.449</b> で四本に、やがて八本、十六本と倍々に分かれ、
+          <b>3.5699…</b> を超えた先では周期を失って連続した帯へ崩れる。
+          滑らかな入力が、不連続な構造変化を生む。
+        </p>
+        <p style="margin-top:1.1em">
+          自己成長が苦しく、そして報われるのはこのためである。
+          昨日の自分の延長線上に、今日の自分はいない。
         </p>
         <div class="eq">
-          1.01<sup>365</sup> = <s>37.78</s> &nbsp; <span>／</span> &nbsp; 0.99<sup>365</sup> = <s>0.03</s>
+          x<sub>n+1</sub> = r &#183; x<sub>n</sub>(1 &#8722; x<sub>n</sub>) &nbsp;<span>／</span>&nbsp;
+          &#948; = <s>4.6692…</s>
         </div>
       </div>
-      <svg class="plot" viewBox="0 0 240 150" role="img" aria-label="累乗曲線">
-        <line class="gd" x1="20" y1="40" x2="228" y2="40"/>
-        <line class="gd" x1="20" y1="80" x2="228" y2="80"/>
-        <line class="ax" x1="20" y1="120" x2="228" y2="120"/>
-        <line class="ax" x1="20" y1="14" x2="20" y2="120"/>
-        <path class="dn" d="M20,118 C80,118 160,119 228,119"/>
-        <path class="up" d="M20,118 C96,117 150,108 186,84 C208,69 220,42 228,18"/>
-        <text x="20" y="134">DAY 0</text>
-        <text x="196" y="134">DAY 365</text>
-        <text x="2" y="18" transform="rotate(-90 8,18)">&#215;37.8</text>
-      </svg>
+      <figure class="bif">
+        <div class="bifp">
+          <canvas id="bif" role="img" aria-label="ロジスティック写像の分岐図"></canvas>
+          <div class="mk" style="left:37.5%"><span>3.0</span></div>
+          <div class="mk" style="left:65.6%"><span>3.449</span></div>
+          <div class="mk mkc" style="left:73.1%"><span>3.5699</span></div>
+        </div>
+        <div class="bx"><span>r = 2.4</span><span>CHAOS &#8594;</span><span>4.0</span></div>
+      </figure>
     </div>
   </section>
 
   <section>
-    <div class="sh"><span class="ix">&#167;01</span><h2>実装</h2><span class="en">IMPLEMENTATIONS</span></div>
+    <div class="sh"><span class="ix">&#167;01</span><h2>原理</h2><span class="en">AXIOMS</span></div>
+    <ol class="ax3 a a6">
+      <li>
+        <span class="n">I</span>
+        <h3>平衡は、死である。</h3>
+        <p>
+          生命は安定した状態ではない。外から流れ込むエネルギーを使い、崩れ続けながら形を保っている
+          <b>散逸構造</b>である。流れが止まった系は、やがて最も秩序の低い状態へ落ちる。
+          <b>静止は維持ではない。静止は劣化である。</b>
+        </p>
+      </li>
+      <li>
+        <span class="n">II</span>
+        <h3>成長は、連続しない。</h3>
+        <p>
+          入力を滑らかに増やしても、系の応答は滑らかに増えない。ある値を超えた瞬間、
+          一つだった状態は二つに分かれ、四つに、八つに、そして予測のつかない帯へ崩れる。
+          <b>能力は積み上がるのではなく、組み替わる。</b>
+        </p>
+      </li>
+      <li>
+        <span class="n">III</span>
+        <h3>自己は、産出され続ける。</h3>
+        <p>
+          細胞は自らの膜を作り、その膜の内側で膜を作るための材料を作る。
+          構成要素が、自分を構成するものを産み出し続ける——<span class="gk">&#945;&#8016;&#964;&#959;&#960;&#959;&#943;&#951;&#963;&#953;&#962;</span>。
+          <b>「私」は実体ではなく、休みなく進行している作業の名前である。</b>
+        </p>
+      </li>
+    </ol>
+    <p class="note">
+      我々が作っているのはアプリケーションという名前の器であり、
+      設計しているのはこの三つが人間の上で起こる<b>場</b>である。
+    </p>
+  </section>
+
+  <section>
+    <div class="sh"><span class="ix">&#167;02</span><h2>実装</h2><span class="en">IMPLEMENTATIONS</span></div>
     <ul class="impl">
       <li><a href="https://apps.apple.com/jp/app/id6792366503">
         <span class="no">01</span>
@@ -272,7 +352,7 @@ footer{padding:clamp(32px,5vw,54px) 0 clamp(46px,7vw,78px);border-top:1px solid 
   </section>
 
   <section>
-    <div class="sh"><span class="ix">&#167;02</span><h2>会社概要</h2><span class="en">RECORD</span></div>
+    <div class="sh"><span class="ix">&#167;03</span><h2>会社概要</h2><span class="en">RECORD</span></div>
     <dl>
       <dt>商号</dt>
       <dd>株式会社インフィニティ<span class="sb">INFINITY, K.K.</span></dd>
@@ -290,18 +370,46 @@ footer{padding:clamp(32px,5vw,54px) 0 clamp(46px,7vw,78px);border-top:1px solid 
 
   <section>
     <div class="coda a a6">
-      <p>意志は、朝ごとに尽きる。<br>構造だけが、翌日も残る。<br><em>我々が置いているのは、構造のほうだ。</em></p>
-      <div class="sg">INFINITY, K.K. ／ &#7957;&#958;&#953;&#962; RESEARCH</div>
+      <p>進化に、目的はない。<br>あるのは、変化と、それを選ぶ場だけだ。<br><em>我々が置いているのは、その場のほうだ。</em></p>
+      <div class="sg">INFINITY GAMES ／ AUTOPOIESIS LAB ／ MINAMI-AOYAMA, TOKYO</div>
     </div>
   </section>
 
   <footer>
-    <div class="ft"><span>&#169; <span id="y">2026</span> INFINITY, K.K.</span><span>株式会社インフィニティ</span></div>
+    <div class="ft"><span>&#169; <span id="y">2026</span> INFINITY, K.K. ／ 株式会社インフィニティ</span><span>INFINITY GAMES</span></div>
   </footer>
 </div>
 
 <script>
 document.getElementById('y').textContent=new Date().getFullYear();
+
+/* FIG.01 ロジスティック写像 x <- r x (1-x) の分岐図 */
+(function(){
+  var c=document.getElementById('bif');
+  if(!c||!c.getContext) return;
+  var R0=2.4, R1=4.0, SKIP=320, KEEP=260;
+  function draw(){
+    var w=c.clientWidth, h=c.clientHeight;
+    if(!w||!h) return;
+    var dpr=Math.min(window.devicePixelRatio||1,2);
+    c.width=Math.round(w*dpr); c.height=Math.round(h*dpr);
+    var g=c.getContext('2d');
+    g.setTransform(dpr,0,0,dpr,0,0);
+    g.clearRect(0,0,w,h);
+    g.fillStyle='rgba(110,240,220,.5)';
+    var cols=Math.round(w*2), d=1/2;
+    for(var p=0;p<cols;p++){
+      var r=R0+(R1-R0)*p/cols, x=0.35, i;
+      for(i=0;i<SKIP;i++) x=r*x*(1-x);
+      for(i=0;i<KEEP;i++){
+        x=r*x*(1-x);
+        g.fillRect(p*d, (1-x)*(h-2)+1, .62, .62);
+      }
+    }
+  }
+  draw();
+  var t; addEventListener('resize',function(){clearTimeout(t);t=setTimeout(draw,220);});
+})();
 </script>
 </body>
 </html>
